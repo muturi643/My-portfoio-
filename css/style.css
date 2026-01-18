@@ -1,0 +1,503 @@
+/* =========================
+   RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background-color: #0f172a; /* slate-900 */
+  color: #e5e7eb; /* gray-200 */
+  line-height: 1.6;
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+  color: #38bdf8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #7dd3fc;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.navbar {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 1.2rem;
+}
+
+.navbar a {
+  font-size: 0.95rem;
+  /* CHANGED: Use variable instead of hardcoded color to support light mode */
+  color: var(--text-main); 
+  position: relative;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero {
+  max-width: 900px;
+  margin: 5rem auto 6rem;
+  padding: 0 1.5rem;
+  text-align: center;
+  animation: fadeUp 1s ease forwards;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 3px solid #38bdf8;
+  transition: transform 0.4s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.hero h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-bottom: 1.2rem;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+  font-size: 1rem;
+  color: #cbd5f5;
+}
+
+.hero-links {
+  margin-top: 1.8rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero-links a {
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: all 0.3s ease;
+}
+
+.hero-links a:hover {
+  background: #38bdf8;
+  color: #020617;
+  transform: translateY(-3px);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 4rem 1.5rem;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+section h2::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: #38bdf8;
+  display: block;
+  margin: 0.6rem auto 0;
+  border-radius: 5px;
+}
+
+/* =========================
+   SKILLS
+========================= */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.skills-grid li {
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.skills-grid li:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+}
+
+/* =========================
+   EXPERIENCE
+========================= */
+.experience-card {
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 14px;
+  padding: 1.8rem;
+  max-width: 800px;
+  margin: auto;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.experience-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.experience-card h4 {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 0.8rem;
+}
+
+.experience-card ul {
+  margin-left: 1rem;
+}
+
+.experience-card li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   PROJECTS
+========================= */
+.project-card {
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: transform 0.4s ease, border 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: #38bdf8;
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  color: #cbd5f5;
+}
+
+/* =========================
+   EDUCATION
+========================= */
+.education-card {
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 14px;
+  padding: 1.5rem;
+  max-width: 700px;
+  margin: 1.2rem auto;
+  transition: transform 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+}
+
+/* =========================
+   CONTACT
+========================= */
+#contact {
+  text-align: center;
+}
+
+#contact p {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .navbar ul {
+    gap: 0.8rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero h2 {
+    font-size: 1rem;
+  }
+}
+
+/* =========================
+   MOBILE NAV
+========================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: #e5e7eb;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  /* CHANGED: Added ".navbar" before ".nav-links" to increase specificity 
+     so it overrides the desktop display:flex rule */
+  .navbar .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #020617;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 2rem 0;
+    display: none; /* Now this will actually work */
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .nav-links.active {
+    display: flex;
+    animation: fadeDown 0.4s ease;
+  }
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   THEME VARIABLES
+========================= */
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #020617;
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --border-soft: rgba(148, 163, 184, 0.15);
+}
+
+/* Light mode overrides */
+body.light {
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #020617;
+  --text-muted: #475569;
+  --accent: #0284c7;
+  --border-soft: rgba(15, 23, 42, 0.15);
+}
+
+/* =========================
+   APPLY VARIABLES
+========================= */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+header {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+body.light header {
+  background: rgba(248, 250, 252, 0.9);
+}
+
+.hero h2,
+.experience-card h4 {
+  color: var(--text-muted);
+}
+
+.hero p,
+.project-card p {
+  color: var(--text-muted);
+}
+
+.skills-grid li,
+.experience-card,
+.project-card,
+.education-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+}
+
+/* =========================
+   THEME TOGGLE BUTTON
+========================= */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#theme-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+  background: var(--accent);
+  color: #020617;
+  transform: translateY(-2px);
+}
+
+/* Fix mobile nav background in light mode */
+body.light .nav-links {
+  background: #ffffff;
+}
+
+/* Fix hamburger color in light mode */
+body.light .hamburger span {
+  background: #020617;
+}
