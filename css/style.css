@@ -16,6 +16,7 @@ body {
   background-color: #0f172a; /* slate-900 */
   color: #e5e7eb; /* gray-200 */
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* =========================
@@ -42,6 +43,7 @@ header {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  transition: background-color 0.3s ease;
 }
 
 .navbar {
@@ -67,7 +69,6 @@ header {
 
 .navbar a {
   font-size: 0.95rem;
-  /* CHANGED: Use variable instead of hardcoded color to support light mode */
   color: var(--text-main); 
   position: relative;
 }
@@ -121,7 +122,7 @@ header {
 .hero h2 {
   font-size: 1.1rem;
   font-weight: 500;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 1.2rem;
 }
 
@@ -129,9 +130,10 @@ header {
   max-width: 650px;
   margin: auto;
   font-size: 1rem;
-  color: #cbd5f5;
+  color: var(--text-muted);
 }
 
+/* Desktop Hero Links */
 .hero-links {
   margin-top: 1.8rem;
   display: flex;
@@ -142,15 +144,36 @@ header {
 .hero-links a {
   padding: 0.6rem 1.3rem;
   border-radius: 999px;
-  background: #020617;
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
   transition: all 0.3s ease;
+  text-align: center;
 }
 
 .hero-links a:hover {
-  background: #38bdf8;
+  background: var(--accent);
   color: #020617;
   transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+/* Primary Button Override */
+.hero-links .btn-primary {
+  background-color: var(--accent);
+  color: #020617;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+}
+
+.hero-links .btn-primary:hover {
+  background-color: #0ea5e9; 
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+}
+
+body.light .hero-links .btn-primary {
+  color: #ffffff; 
 }
 
 /* =========================
@@ -190,30 +213,35 @@ section h2::after {
 }
 
 .skills-grid li {
-  background: #020617;
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
   padding: 0.8rem 1rem;
   border-radius: 10px;
   font-size: 0.9rem;
-  transition: transform 0.3s ease, border 0.3s ease;
+  transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skills-grid li:hover {
   transform: translateY(-4px);
-  border-color: #38bdf8;
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
 }
 
 /* =========================
    EXPERIENCE
 ========================= */
 .experience-card {
-  background: #020617;
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 1.8rem;
   max-width: 800px;
   margin: auto;
   animation: fadeUp 0.8s ease forwards;
+  transition: border-color 0.3s ease;
+}
+.experience-card:hover {
+  border-color: var(--accent);
 }
 
 .experience-card h3 {
@@ -223,7 +251,7 @@ section h2::after {
 
 .experience-card h4 {
   font-size: 0.95rem;
-  color: #94a3b8;
+  color: var(--text-muted);
   margin-bottom: 0.8rem;
 }
 
@@ -240,23 +268,25 @@ section h2::after {
    PROJECTS
 ========================= */
 .project-card {
-  background: #020617;
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
   border-radius: 16px;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  transition: transform 0.4s ease, border 0.4s ease;
+  transition: transform 0.4s ease, border 0.4s ease, box-shadow 0.4s ease;
 }
 
 .project-card:hover {
   transform: translateY(-6px);
-  border-color: #38bdf8;
+  border-color: var(--accent);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .project-card img {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 1rem;
+  object-fit: cover;
 }
 
 .project-card h3 {
@@ -266,24 +296,25 @@ section h2::after {
 
 .project-card p {
   font-size: 0.95rem;
-  color: #cbd5f5;
+  color: var(--text-muted);
 }
 
 /* =========================
    EDUCATION
 ========================= */
 .education-card {
-  background: #020617;
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
   border-radius: 14px;
   padding: 1.5rem;
   max-width: 700px;
   margin: 1.2rem auto;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .education-card:hover {
   transform: translateY(-4px);
+  border-color: var(--accent);
 }
 
 /* =========================
@@ -305,43 +336,25 @@ footer {
   text-align: center;
   padding: 2rem 1rem;
   font-size: 0.85rem;
-  color: #94a3b8;
-  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-soft);
 }
 
 /* =========================
    ANIMATIONS
 ========================= */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-  .navbar ul {
-    gap: 0.8rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero h2 {
-    font-size: 1rem;
-  }
-}
-
-/* =========================
-   MOBILE NAV
+   RESPONSIVE & MOBILE
 ========================= */
 .hamburger {
   display: none;
@@ -352,7 +365,7 @@ footer {
 .hamburger span {
   height: 3px;
   width: 25px;
-  background: #e5e7eb;
+  background: var(--text-main);
   margin-bottom: 5px;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -363,25 +376,50 @@ footer {
     display: flex;
   }
 
-  /* CHANGED: Added ".navbar" before ".nav-links" to increase specificity 
-     so it overrides the desktop display:flex rule */
+  .navbar ul {
+    gap: 0.8rem;
+  }
+
   .navbar .nav-links {
     position: absolute;
     top: 70px;
     right: 0;
-    background: #020617;
+    background: var(--bg-card);
     width: 100%;
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
     padding: 2rem 0;
-    display: none; /* Now this will actually work */
-    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    display: none; 
+    border-bottom: 1px solid var(--border-soft);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   }
 
   .nav-links.active {
     display: flex;
     animation: fadeDown 0.4s ease;
+  }
+
+  .hero h1 { font-size: 2rem; }
+  .hero h2 { font-size: 1rem; }
+  
+  /* FIXED MOBILE LINKS */
+  .hero-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .hero-links .btn-primary {
+    flex: 1 1 100%; /* Forces Resume button to take full width */
+    max-width: 400px;
+  }
+  
+  .hero-links a:not(.btn-primary) {
+    flex: 1 1 calc(33.333% - 0.8rem); /* Social links split the bottom row evenly */
+    min-width: 80px;
+    padding: 0.6rem 0.5rem; /* Slightly smaller padding to fit */
+    font-size: 0.9rem;
   }
 }
 
@@ -397,17 +435,6 @@ footer {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
-}
-
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* =========================
@@ -448,24 +475,6 @@ body.light header {
   background: rgba(248, 250, 252, 0.9);
 }
 
-.hero h2,
-.experience-card h4 {
-  color: var(--text-muted);
-}
-
-.hero p,
-.project-card p {
-  color: var(--text-muted);
-}
-
-.skills-grid li,
-.experience-card,
-.project-card,
-.education-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-}
-
 /* =========================
    THEME TOGGLE BUTTON
 ========================= */
@@ -484,43 +493,12 @@ body.light header {
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
+  -webkit-user-select: none; /* Prevents text highlighting on quick taps */
+  user-select: none;
 }
 
 #theme-toggle:hover {
   background: var(--accent);
   color: #020617;
   transform: translateY(-2px);
-}
-
-/* Fix mobile nav background in light mode */
-body.light .nav-links {
-  background: #ffffff;
-}
-
-/* Fix hamburger color in light mode */
-body.light .hamburger span {
-  background: #020617;
-}
-
-/* =========================
-   RESUME BUTTON STYLES
-========================= */
-/* Style for the primary Download Resume button */
-.hero-links .btn-primary {
-  background-color: #38bdf8; /* Blue fill */
-  color: #020617; /* Dark text for contrast */
-  font-weight: 600;
-  border: 1px solid #38bdf8;
-}
-
-/* Hover effect for the resume button */
-.hero-links .btn-primary:hover {
-  background-color: #0ea5e9; /* Slightly darker blue */
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25); /* Glow effect */
-}
-
-/* Light Mode Adjustment for the Resume Button */
-body.light .hero-links .btn-primary {
-  color: #ffffff; /* White text on blue background looks better in light mode */
 }

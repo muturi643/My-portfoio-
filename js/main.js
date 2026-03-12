@@ -35,27 +35,54 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 /* =========================
-   DARK / LIGHT MODE TOGGLE
+   THEME TOGGLE (SYSTEM / LIGHT / DARK)
 ========================= */
 const themeToggle = document.getElementById("theme-toggle");
 const body = document.body;
 
-// Load saved theme
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "light") {
-  body.classList.add("light");
-  themeToggle.textContent = "☀️";
+// Define states
+const themes = ["system", "light", "dark"];
+const themeIcons = { system: "💻", light: "☀️", dark: "🌙" };
+
+// Get saved theme or default to system
+let currentTheme = localStorage.getItem("theme") || "system";
+
+function applyTheme(themeState) {
+  body.classList.remove("light", "dark");
+  
+  if (themeState === "system") {
+    // Check OS preference
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (!prefersDark) {
+      body.classList.add("light");
+    }
+  } else if (themeState === "light") {
+    body.classList.add("light");
+  } 
+  // If 'dark', no class is needed since dark is default in CSS
+
+  // Update button icon
+  themeToggle.textContent = themeIcons[themeState];
 }
 
-// Toggle theme
-themeToggle.addEventListener("click", () => {
-  body.classList.toggle("light");
+// Initial application
+applyTheme(currentTheme);
 
-  if (body.classList.contains("light")) {
-    localStorage.setItem("theme", "light");
-    themeToggle.textContent = "☀️";
-  } else {
-    localStorage.setItem("theme", "dark");
-    themeToggle.textContent = "🌙";
+// Handle toggle click
+themeToggle.addEventListener("click", () => {
+  // Cycle to next theme
+  let currentIndex = themes.indexOf(currentTheme);
+  let nextIndex = (currentIndex + 1) % themes.length;
+  currentTheme = themes[nextIndex];
+  
+  // Save & Apply
+  localStorage.setItem("theme", currentTheme);
+  applyTheme(currentTheme);
+});
+
+// Listen for OS theme changes while in "system" mode
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+  if (currentTheme === "system") {
+    applyTheme("system");
   }
 });
