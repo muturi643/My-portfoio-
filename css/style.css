@@ -299,6 +299,16 @@ section h2::after {
   color: var(--text-muted);
 }
 
+.project-status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.project-status strong {
+  color: var(--accent);
+}
+
 /* =========================
    EDUCATION
 ========================= */
